@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   root to: 'pages#index'
   resources :advertisements
 
-  get 'categories/:category_name', to: "categories#browse_by_category"
+  get 'categories/:category_name', to: "browse#by_category"
+  get 'search', to: "browse#by_search"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

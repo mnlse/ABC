@@ -1,0 +1,10 @@
+.hero
+  %h1.display-3.text-center.text-white.pt-5 Search
+  = form_tag "#", method: :get
+  .form-row.px-3
+    .col
+      = text_field_tag :search, nil, autocomplete: :off, placeholder: "Query", class: :'form-control', id: "search"
+    .col
+      = text_field_tag :location, nil, autocomplete: :off, placeholder: "Location", class: :'form-control', id: "location"
+    .col-1
+      = submit_tag :Submit, id: "submit", class: "btn btn-primary"

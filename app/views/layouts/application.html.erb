@@ -11,8 +11,12 @@
   </head>
 
   <body>
-    <%= notice if notice %>
-    <%= alert if alert %>
-    <%= yield %>
+    <div class="container">
+      <%= notice if notice %>
+      <%= alert if alert %>
+      <%= render 'shared/nav' %>
+      <%= render 'shared/search' if @search %>
+      <%= yield %>
+    </div>
   </body>
 </html>

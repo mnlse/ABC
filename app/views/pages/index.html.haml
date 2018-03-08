@@ -1,169 +1,40 @@
 %div.container
-  %nav.navbar.navbar-expand-lg.navbar-light.bg-light
-    %a.navbar-brand{href: "#"} ABC
-    %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", type: "button"}
-      %span.navbar-toggler-icon
-    #navbarSupportedContent.collapse.navbar-collapse
-      %ul.navbar-nav.ml-auto.mr-5
-        %li.nav-item.dropdown
-          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
-            My ABC
-          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-            = link_to "My Profile", "#", class: "dropdown-item"
-            = link_to "My Listings", "#", class: "dropdown-item"
-            .dropdown-divider
-            = link_to "Settings", "#", class: "dropdown-item"
-        - if user_signed_in?
-          %li.nav-item
-            = link_to "New Listing", destroy_user_session_path, method: :delete, class: "nav-link"
-          %li.nav-item
-            = link_to "Log Out", destroy_user_session_path, method: :delete, class: "nav-link"
-        - else
-          %li.nav-item
-            = link_to "Sign In", new_user_session_path, class: "nav-link"
-          %li.nav-item
-            = link_to "Sign Up", new_user_registration_path, class: "nav-link"
+%h1.display-5.text-center.mt-4 Categories
 
-  .hero
-    %h1.display-3.text-center.text-white.pt-5 Search
-    = form_tag "#", method: :get
-    .form-row.px-3
-      .col
-        = text_field_tag :search, nil, placeholder: "Query", class: :'form-control', id: "search"
-      .col
-        = text_field_tag :location, nil, placeholder: "Location", class: :'form-control', id: "location"
-      .col-1
-        = submit_tag :Submit, id: "submit", class: "btn btn-primary"
+%section.categories
+  - @categories.in_groups_of(4) do |categories_four|
+    .row.mt-4
+      - categories_four.each do |category|
+        - unless category.nil?
+          .col-md-3
+            = link_to "#", class: "category-item__link" do
+              .category-item
+                .category-item__icon
+                  %i{class: category.icon}
+                .category-item__text
+                  = category.name
+%h1.display-5.text-center.mt-4 Promoted near Walbrzych
 
-  %h1.display-5.text-center.mt-4 Categories
-
-  %section.categories
-    .row.mt-4
-      .col-md-3
-        = link_to "#", class: "category-item__link" do
-          .category-item
-            .category-item__icon
-              %i.la.la-automobile
-            .category-item__text
-              %span Motorization
-      .col-md-3
-        = link_to "#", class: "category-item__link" do
-          .category-item
-            .category-item__icon
-              %i.la.la-home
-            .category-item__text
-              %span Real Estate
-      .col-md-3
-        = link_to "#", class: "category-item__link" do
-          .category-item
-            .category-item__icon
-              %i.la.la-briefcase
-            .category-item__text
-              %span Work
-      .col-md-3
-        = link_to "#", class: "category-item__link" do
-          .category-item
-            .category-item__icon
-              %i.la.la-wrench
-            .category-item__text
-              %span
-                House &amp; Garden
-    .row.mt-4
-      .col-md-3
-        = link_to "#", class: "category-item__link" do
-          .category-item
-            .category-item__icon
-              %i.la.la-cog
-            .category-item__text
-              %span
-                Electronics
-      .col-md-3
-        = link_to "#", class: "category-item__link" do
-          .category-item
-            .category-item__icon
-              %i.la.la-black-tie
-            .category-item__text
-              %span
-                Fashion
-      .col-md-3
-        = link_to "#", class: "category-item__link" do
-          .category-item
-            .category-item__icon
-              %i.la.la-paw
-            .category-item__text
-              %span
-                Animals
-      .col-md-3
-        = link_to "#", class: "category-item__link" do
-          .category-item
-            .category-item__icon
-              %i.la.la-child
-            .category-item__text
-              %span
-                For children
-    .row.mt-4
-      .col-md-3
-        = link_to "#", class: "category-item__link" do
-          .category-item
-            .category-item__icon
-              %i.la.la-futbol-o
-            .category-item__text
-              %span
-                Sport &amp; Hobby
-      .col-md-3
-        = link_to "#", class: "category-item__link" do
-          .category-item
-            .category-item__icon
-              %i.la.la-music
-            .category-item__text
-              %span
-                Music &amp; Education
-      .col-md-3
-        = link_to "#", class: "category-item__link" do
-          .category-item
-            .category-item__icon
-              %i.la.la-envelope
-            .category-item__text
-              %span
-                Servies &amp; Business
-      .col-md-3
-        = link_to "#", class: "category-item__link" do
-          .category-item
-            .category-item__icon
-              %i.la.la-venus-mars
-            .category-item__text
-              %span
-                Relationships
-  %h1.display-5.text-center.mt-4 Promoted near Walbrzych
-
-  %section.promoted
-    .row.mt-4
-      .col-md-4
-        .card
-          %img.card-img-top{src: "https://loremflickr.com/320/240" }
-          .card-body
-            %h2.card-title.text-center Samochód Opel Astra
-            %p.card-text Dolor labore fugit perspiciatis nulla mollitia? Ea molestiae illo eum
-            = link_to "See More", "#", class: "btn btn-primary btn-block"
-      .col-md-4
-        .card
-          %img.card-img-top{src: "https://loremflickr.com/320/240" }
-          .card-body
-            %h2.card-title.text-center Title
-            %p.card-text Dolor labore fugit perspiciatis nulla mollitia? Ea molestiae illo eum
-            = link_to "See More", "#", class: "btn btn-primary btn-block"
-      .col-md-4
-        .card
-          %img.card-img-top{src: "https://loremflickr.com/320/240" }
-          .card-body
-            %h2.card-title.text-center Title
-            %p.card-text Dolor labore fugit perspiciatis nulla mollitia? Ea molestiae illo eum
-            = link_to "See More", "#", class: "btn btn-primary btn-block"
-    .row.mt-4
-      .col-md-3
-        .card
-          %img.card-img-top{src: "https://loremflickr.com/320/240" }
-          .card-body
-            %h2.card-title.text-center Title
-            %p.card-text Dolor labore fugit perspiciatis nulla mollitia? Ea molestiae illo eum
-            = link_to "See More", "#", class: "btn btn-primary btn-block"
+%section.promoted
+  .row.mt-4
+    .col-md-4
+      .card
+        %img.card-img-top{src: "https://loremflickr.com/320/240" }
+        .card-body
+          %h2.card-title.text-center Samochód Opel Astra
+          %p.card-text Dolor labore fugit perspiciatis nulla mollitia? Ea molestiae illo eum
+          = link_to "See More", "#", class: "btn btn-primary btn-block"
+    .col-md-4
+      .card
+        %img.card-img-top{src: "https://loremflickr.com/320/240" }
+        .card-body
+          %h2.card-title.text-center Title
+          %p.card-text Dolor labore fugit perspiciatis nulla mollitia? Ea molestiae illo eum
+          = link_to "See More", "#", class: "btn btn-primary btn-block"
+    .col-md-4
+      .card
+        %img.card-img-top{src: "https://loremflickr.com/320/240" }
+        .card-body
+          %h2.card-title.text-center Title
+          %p.card-text Dolor labore fugit perspiciatis nulla mollitia? Ea molestiae illo eum
+          = link_to "See More", "#", class: "btn btn-primary btn-block"

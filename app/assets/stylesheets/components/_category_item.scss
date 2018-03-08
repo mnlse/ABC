@@ -1,0 +1,28 @@
+.category-item {
+  width: 100%;
+  font-size: 7vh;
+  background: darken(#fff, 2%);
+  color: #000;
+
+  &:hover {
+    outline: 1px solid black;
+  }
+
+  &__link,
+  &__link:active,
+  &__link:hover {
+    text-decoration: none;
+  }
+
+  &__icon {
+    display: inline-block;
+    font-size: 1em;
+    border-radius: 50%;
+  }
+
+  &__text {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 0.5em;
+  }
+}

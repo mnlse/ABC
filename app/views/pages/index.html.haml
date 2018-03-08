@@ -7,15 +7,15 @@
       - categories_four.each do |category|
         - unless category.nil?
           .col-md-3
-            = link_to "#", class: "category-item__link" do
+            = link_to "categories/#{category.name.gsub(" ", "_")}", class: "category-item__link" do
               .category-item
                 .category-item__icon
                   %i{class: category.icon}
                 .category-item__text
                   = category.name
-%h1.display-5.text-center.mt-4 Promoted near Walbrzych
 
 %section.promoted
+  %h1.display-5.text-center.mt-4 Promoted near Walbrzych
   .row.mt-4
     .col-md-4
       .card
@@ -38,3 +38,17 @@
           %h2.card-title.text-center Title
           %p.card-text Dolor labore fugit perspiciatis nulla mollitia? Ea molestiae illo eum
           = link_to "See More", "#", class: "btn btn-primary btn-block"
+
+%section.latest
+  %h1.display-5.text-center.mt-4 Recently added
+  - @recent.in_groups_of(3) do |recent_three|
+    .row.mt-4
+      - recent_three.each do |recent_item|
+        - unless recent_item.nil?
+          .col-md-4
+            .card
+              %img.card-img-top{src: "https://loremflickr.com/320/240" }
+              .card-body
+                %h2.card-title.text-center= recent_item.title
+                %p.card-text= truncate(recent_item.description, length: 60)
+                = link_to "See More", "#", class: "btn btn-primary btn-block"

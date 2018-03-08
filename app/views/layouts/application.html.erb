@@ -12,11 +12,10 @@
 
   <body>
     <div class="container">
-      <%= notice if notice %>
-      <%= alert if alert %>
       <%= render 'shared/nav' %>
       <%= render 'shared/search' if @search %>
       <%= yield %>
+      <%= render 'shared/flash' if flash %>
     </div>
   </body>
 </html>

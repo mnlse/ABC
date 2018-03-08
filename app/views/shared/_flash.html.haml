@@ -1,0 +1,9 @@
+%script
+  - if flash[:notice]
+    toastr['success']('#{flash.notice}')
+  - elsif flash[:info]
+    toastr['info']('#{flash.info}')
+  - elsif flash[:error]
+    toastr['error']('#{flash.error}')
+  - elsif flash[:warning]
+    toastr['warning']('#{flash.warning}')

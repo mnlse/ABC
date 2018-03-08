@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180308151037) do
+ActiveRecord::Schema.define(version: 20180308182539) do
 
   create_table "advertisements", force: :cascade do |t|
     t.integer "user_id"
@@ -20,6 +20,10 @@ ActiveRecord::Schema.define(version: 20180308151037) do
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "main_image_file_name"
+    t.string "main_image_content_type"
+    t.integer "main_image_file_size"
+    t.datetime "main_image_updated_at"
     t.index ["category_id"], name: "index_advertisements_on_category_id"
     t.index ["user_id"], name: "index_advertisements_on_user_id"
   end

@@ -24,31 +24,72 @@
           %h2.card-title.text-center Samochód Opel Astra
           %p.card-text Dolor labore fugit perspiciatis nulla mollitia? Ea molestiae illo eum
           = link_to "See More", "#", class: "btn btn-primary btn-block"
-    .col-md-4
-      .card
-        %img.card-img-top{src: "https://loremflickr.com/320/240" }
-        .card-body
-          %h2.card-title.text-center Title
-          %p.card-text Dolor labore fugit perspiciatis nulla mollitia? Ea molestiae illo eum
-          = link_to "See More", "#", class: "btn btn-primary btn-block"
-    .col-md-4
-      .card
-        %img.card-img-top{src: "https://loremflickr.com/320/240" }
-        .card-body
-          %h2.card-title.text-center Title
-          %p.card-text Dolor labore fugit perspiciatis nulla mollitia? Ea molestiae illo eum
-          = link_to "See More", "#", class: "btn btn-primary btn-block"
+    .col-md-4.flex-column.d-flex
+      .row
+        .col-md-6
+          .card.card-small
+            %img.card-img-top{src: "https://loremflickr.com/320/240" }
+            .card-body
+              %h5.card-title.text-center Samochód Opel Astra
+              = link_to "See More", "#", class: "btn btn-primary btn-block"
+        .col-md-6
+          .card.card-small
+            %img.card-img-top{src: "https://loremflickr.com/320/240" }
+            .card-body
+              %h5.card-title.text-center Samochód Opel Astra
+              = link_to "See More", "#", class: "btn btn-primary btn-block"
+      .row.mt-3
+        .col-md-6
+          .card
+            %img.card-img-top{src: "https://loremflickr.com/320/240" }
+            .card-body
+              %h5.card-title.text-center Samochód Opel Astra
+              = link_to "See More", "#", class: "btn btn-primary btn-block"
+        .col-md-6
+          .card
+            %img.card-img-top{src: "https://loremflickr.com/320/240" }
+            .card-body
+              %h5.card-title.text-center Samochód Opel Astra
+              = link_to "See More", "#", class: "btn btn-primary btn-block"
+    .col-md-4.flex-column.d-flex
+      .row
+        .col-md-6
+          .card.card-small
+            %img.card-img-top{src: "https://loremflickr.com/320/240" }
+            .card-body
+              %h5.card-title.text-center Samochód Opel Astra
+              = link_to "See More", "#", class: "btn btn-primary btn-block"
+        .col-md-6
+          .card.card-small
+            %img.card-img-top{src: "https://loremflickr.com/320/240" }
+            .card-body
+              %h5.card-title.text-center Samochód Opel Astra
+              = link_to "See More", "#", class: "btn btn-primary btn-block"
+      .row.mt-3
+        .col-md-6
+          .card
+            %img.card-img-top{src: "https://loremflickr.com/320/240" }
+            .card-body
+              %h5.card-title.text-center Samochód Opel Astra
+              = link_to "See More", "#", class: "btn btn-primary btn-block"
+        .col-md-6
+          .card
+            %img.card-img-top{src: "https://loremflickr.com/320/240" }
+            .card-body
+              %h5.card-title.text-center Samochód Opel Astra
+              = link_to "See More", "#", class: "btn btn-primary btn-block"
 
 %section.latest
   %h1.display-5.text-center.mt-4 Recently added
-  - @recent.in_groups_of(3) do |recent_three|
+  - @recent.in_groups_of(6) do |recent_six|
     .row.mt-4
-      - recent_three.each do |recent_item|
+      - recent_six.each do |recent_item|
         - unless recent_item.nil?
-          .col-md-4
+          .col-md-2
             .card
-              %img.card-img-top{src: "https://loremflickr.com/320/240" }
+              = image_tag recent_item.main_image.url, class: "card-img-top"
               .card-body
                 %h2.card-title.text-center= recent_item.title
+                %p.card-text.text-muted.text-center= recent_item.category.name
                 %p.card-text= truncate(recent_item.description, length: 60)
                 = link_to "See More", "#", class: "btn btn-primary btn-block"

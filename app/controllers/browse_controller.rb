@@ -10,7 +10,7 @@ class BrowseController < ApplicationController
 
   def by_category
     @search = true
-    category = Category.find_by_name(params[:category_name])
+    category = Category.find_by_name(params[:category_name].gsub("_", " "))
     @advertisements = Advertisement.where(category: category)
     render :browse
   end

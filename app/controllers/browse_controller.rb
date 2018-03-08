@@ -5,7 +5,7 @@ class BrowseController < ApplicationController
     location = params[:location]
 
     if query && location.blank?
-      @advertisements = Advertisement.where("lower(title) LIKE lower(?)", query)
+      @advertisements = Advertisement.search(phrase: query)
     else
 
     end

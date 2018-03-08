@@ -81,7 +81,7 @@
 
 %section.latest
   %h1.display-5.text-center.mt-4 Recently added
-  - @recent.in_groups_of(6) do |recent_six|
+  - @recent_ad.in_groups_of(6) do |recent_six|
     .row.mt-4
       - recent_six.each do |recent_item|
         - unless recent_item.nil?

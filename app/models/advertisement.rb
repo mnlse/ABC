@@ -5,9 +5,9 @@ class Advertisement < ApplicationRecord
                        content_type: { content_type: %w(image/jpeg image/png image/gif) },
                        size: { in: 0..5.megabytes }
 
-  def self.recent
-    where("created_at > ?", Time.now - 24.hours).limit(9)
-  end
+  scope :recent, -> { where("created_at > ?", Time.now - 24.hours).limit(9).order("created_at DESC") }
+  scope :promoted, -> { where(promoted: true).order("created_at DESC") }
+  scope :published, -> { where(published: true) }
 
   def self.search(phrase:)
     where("lower(title) LIKE lower(?)", "%#{phrase}%")

@@ -3,6 +3,7 @@ class PagesController < ApplicationController
     @categories = Category.all
     @search = true
 
-    @recent = Advertisement.recent
+    @recent_ad = Advertisement.published.recent
+    @promoted_ad = Advertisement.published.promoted
   end
 end

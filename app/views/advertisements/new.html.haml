@@ -2,16 +2,40 @@
   %h1.text-center.text-white.display-3 New Advertisement
 
 = form_for @advertisement do |f|
-  .form-group
-    = f.label :title, maxlength: 15
-    = f.text_field :title, class: "form-control"
-  .form-group
-    = f.label :category
-    = f.select :category_id, options_for_select(@categories), {}, class: "form-control"
-  .form-group
-    = f.label :description
-    = f.text_area :description, class: "form-control"
-  .form-group
-    = f.label :"Main image"
-    = f.file_field :main_image, class: "form-control"
-  = f.submit "Save", class: "btn btn-primary"
+  .form-row.mt-5
+    .col-md-6
+      .form-group
+        = f.label :Title
+        = f.text_field :title, class: "form-control"
+    .col-md-6
+      .form-group
+        = f.label :category
+        = f.select :category_id, options_for_select(@categories), { }, class: "form-control"
+  %div.form-row
+    .col
+      .form-group
+        = f.label :description
+        = f.text_area :description, class: "form-control", rows: 10
+    .col
+      .form-group
+        = f.label :price, maxlength: 15
+        = f.number_field :price, class: "form-control"
+      .form-group
+        = f.label :"Main image"
+        = f.file_field :main_image, class: "form-control"
+      .form-group
+        = f.label :promoted, class: "u-non-selectable"
+        = f.check_box :promoted
+      .form-group.hidden
+        = f.label :published, class: "u-non-selectable"
+        = f.check_box :published
+
+  = f.submit "Save", class: "btn btn-primary btn-lg mb-5", id: "save"
+  = f.button "Publish", class: "btn btn-secondary btn-lg mb-5", id: "publish"
+
+:javascript
+  $('#publish').click(function(e) {
+    e.preventDefault();
+    $('#advertisement_published').prop("checked", true);
+    $('#save').click();
+  });

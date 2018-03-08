@@ -1,13 +1,13 @@
 class AdvertisementsController < ApplicationController
   def new
     @search = false
-    @advertisement = Advertisement.new
+    @advertisement = current_user.advertisements.new
 
     @categories = Category.all.collect { |cat| [cat.name, cat.id] }
   end
 
   def create
-    @advertisement = Advertisement.new(permitted_params)
+    @advertisement = current_user.advertisements.new(permitted_params)
     if @advertisement.save
       flash[:notice] = "Successfully saved advertisement."
       redirect_to root_path
@@ -19,6 +19,6 @@ class AdvertisementsController < ApplicationController
 
   private
   def permitted_params
-    params.require(:advertisement).permit(:category_id, :title, :description, :main_image)
+    params.require(:advertisement).permit(:category_id, :published, :title, :description, :main_image)
   end
 end

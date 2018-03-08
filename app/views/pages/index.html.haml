@@ -15,7 +15,9 @@
             = link_to "Settings", "#", class: "dropdown-item"
         - if user_signed_in?
           %li.nav-item
-            = link_to "Log Out", destroy_user_session_path, class: "nav-link"
+            = link_to "New Listing", destroy_user_session_path, method: :delete, class: "nav-link"
+          %li.nav-item
+            = link_to "Log Out", destroy_user_session_path, method: :delete, class: "nav-link"
         - else
           %li.nav-item
             = link_to "Sign In", new_user_session_path, class: "nav-link"
@@ -24,14 +26,14 @@
 
   .hero
     %h1.display-3.text-center.text-white.pt-5 Search
-    = form_tag url: "#"
+    = form_tag "#", method: :get
     .form-row.px-3
       .col
         = text_field_tag :search, nil, placeholder: "Query", class: :'form-control', id: "search"
       .col
         = text_field_tag :location, nil, placeholder: "Location", class: :'form-control', id: "location"
       .col-1
-        = button_tag :Submit, id: "submit", class: "btn btn-primary"
+        = submit_tag :Submit, id: "submit", class: "btn btn-primary"
 
   %h1.display-5.text-center.mt-4 Categories
 
@@ -136,27 +138,28 @@
 
   %section.promoted
     .row.mt-4
-      .col-md-3
+      .col-md-4
+        .card
+          %img.card-img-top{src: "https://loremflickr.com/320/240" }
+          .card-body
+            %h2.card-title.text-center Samochód Opel Astra
+            %p.card-text Dolor labore fugit perspiciatis nulla mollitia? Ea molestiae illo eum
+            = link_to "See More", "#", class: "btn btn-primary btn-block"
+      .col-md-4
         .card
           %img.card-img-top{src: "https://loremflickr.com/320/240" }
           .card-body
             %h2.card-title.text-center Title
             %p.card-text Dolor labore fugit perspiciatis nulla mollitia? Ea molestiae illo eum
             = link_to "See More", "#", class: "btn btn-primary btn-block"
-      .col-md-3
+      .col-md-4
         .card
           %img.card-img-top{src: "https://loremflickr.com/320/240" }
           .card-body
             %h2.card-title.text-center Title
             %p.card-text Dolor labore fugit perspiciatis nulla mollitia? Ea molestiae illo eum
             = link_to "See More", "#", class: "btn btn-primary btn-block"
-      .col-md-3
-        .card
-          %img.card-img-top{src: "https://loremflickr.com/320/240" }
-          .card-body
-            %h2.card-title.text-center Title
-            %p.card-text Dolor labore fugit perspiciatis nulla mollitia? Ea molestiae illo eum
-            = link_to "See More", "#", class: "btn btn-primary btn-block"
+    .row.mt-4
       .col-md-3
         .card
           %img.card-img-top{src: "https://loremflickr.com/320/240" }

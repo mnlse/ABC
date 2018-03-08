@@ -1,2 +1,14 @@
 .hero.d-flex.align-items-center.justify-content-center
   %h1.text-center.text-white.display-3 New Advertisement
+
+= form_for @advertisement do |f|
+  .form-group
+    = f.label :title, maxlength: 15
+    = f.text_field :title, class: "form-control"
+  .form-group
+    = f.label :Category
+    = f.select :category_id, options_for_select(@categories), {}, class: "form-control"
+  .form-group
+    = f.label :title
+    = f.text_area :title, class: "form-control"
+  = f.submit "Save", class: "btn btn-primary"

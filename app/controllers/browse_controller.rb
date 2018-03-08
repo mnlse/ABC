@@ -4,13 +4,14 @@ class BrowseController < ApplicationController
     query = params[:query]
     location = params[:location]
 
-    if query && location.blank?
-      @advertisements = Advertisement.search(phrase: query)
-    else
-
-    end
+    @advertisements = Advertisement.search(phrase: query)
+    render :browse
   end
+
   def by_category
-    category = params[:category]
+    @search = true
+    category = Category.find_by_name(params[:category_name])
+    @advertisements = Advertisement.where(category: category)
+    render :browse
   end
 end

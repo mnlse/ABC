@@ -1,3 +1,5 @@
 - @advertisements.each do |advertisement|
+  = image_tag advertisement.main_image.url(:small)
   = advertisement.title
-  = advertisement.description
+  %hr
+

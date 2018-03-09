@@ -13,6 +13,7 @@ class AdvertisementsController < ApplicationController
   end
 
   def preview
+    render :show
   end
 
   def update

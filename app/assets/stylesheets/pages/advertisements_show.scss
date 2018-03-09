@@ -3,3 +3,10 @@
     width: 100%;
   }
 }
+.carousel-item {
+  height: 100vh;
+  overflow: hidden;
+  img {
+    object-fit: cover;
+  }
+}

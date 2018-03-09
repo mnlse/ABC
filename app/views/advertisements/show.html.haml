@@ -5,17 +5,12 @@
   %p.price= @advertisement.price
 
   #carouselIndicators.carousel.slide{"data-ride" => "carousel"}
-    %ol.carousel-indicators
-      %li.active{"data-slide-to" => "0", "data-target" => "#carouselIndicators"}
-      %li{"data-slide-to" => "1", "data-target" => "#carouselIndicators"}
-      %li{"data-slide-to" => "2", "data-target" => "#carouselIndicators"}
     .carousel-inner
       .carousel-item.active
         = image_tag @advertisement.main_image.url(:medium), class: "d-block w-100"
-      .carousel-item
-        %img.d-block.w-100{:alt => "Second slide", :src => "..."}/
-      .carousel-item
-        %img.d-block.w-100{:alt => "Third slide", :src => "..."}/
+      - @advertisement.pictures.each do |picture|
+        .carousel-item
+          = image_tag picture.image.url(:medium), class: "d-block w-100"
     %a.carousel-control-prev{"data-slide" => "prev", :href => "#carouselIndicators", :role => "button"}
       %span.carousel-control-prev-icon{"aria-hidden" => "true"}
       %span.sr-only Previous

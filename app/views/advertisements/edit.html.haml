@@ -26,6 +26,11 @@
         = image_tag @advertisement.main_image.url(:small), style: "width: 100px;"
         = f.file_field :main_image, class: "form-control"
       .form-group
+        = f.label :"Secondary images"
+        - @advertisement.pictures.each do |picture|
+          %br
+          = image_tag picture.image.url(:small), style: "width: 100px"
+      .form-group
         = f.label :promoted, class: "u-non-selectable"
         = f.check_box :promoted
       .form-group.hidden

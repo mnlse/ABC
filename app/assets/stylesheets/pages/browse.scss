@@ -1,0 +1,20 @@
+.browse {
+  &__image {
+    width: 200px;
+  }
+  &__link,
+  &__link:active,
+  &__link:hover {
+    text-decoration: none;
+    color: #000;
+  }
+  &__link:hover {
+    color: lighten(#000, 30%);
+  }
+
+  .browse__title {
+    line-height: 100px;
+  }
+  .browse__price {
+  }
+}

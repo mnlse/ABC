@@ -1,5 +1,20 @@
-- @advertisements.each do |advertisement|
-  = image_tag advertisement.main_image.url(:small)
-  = advertisement.title
-  %hr
+%section.browse
+  - @advertisements.each do |advertisement|
+    = link_to advertisement, class: "browse__link" do
+      .browse__advertisement.row
+        %div.col-md-3
+          = image_tag advertisement.main_image.url(:small), class: "browse__image"
 
+        %div.col-md-6.d-flex.justify-content-start.align-items-center
+          .d-flex.flex-column
+            .item
+              %h2.d-inline-block.display-5= advertisement.title
+            .item
+              = truncate(advertisement.description, length: 30)
+
+
+
+        %div.col-md-3.justify-content-end.d-flex.align-items-end
+          %h2.d-inline-block.float-right.ml-auto.text-muted= number_to_currency(advertisement.price, unit: "PLN")
+
+      %hr

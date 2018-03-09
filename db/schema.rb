@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180308203551) do
+ActiveRecord::Schema.define(version: 20180309131609) do
 
   create_table "advertisements", force: :cascade do |t|
     t.integer "user_id"
@@ -35,6 +35,16 @@ ActiveRecord::Schema.define(version: 20180308203551) do
     t.string "icon"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "pictures", force: :cascade do |t|
+    t.string "pictureable_type"
+    t.integer "pictureable_id"
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+    t.index ["pictureable_type", "pictureable_id"], name: "index_pictures_on_pictureable_type_and_pictureable_id"
   end
 
   create_table "users", force: :cascade do |t|

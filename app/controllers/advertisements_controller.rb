@@ -1,14 +1,15 @@
 class AdvertisementsController < ApplicationController
   before_action :set_advertisement, only: [:edit, :update, :show, :preview]
   def new
-    @search = false
     @advertisement = current_user.advertisements.new
+    @advertisement.pictures.build
   end
 
   def edit
   end
 
   def show
+    @search = true
   end
 
   def preview

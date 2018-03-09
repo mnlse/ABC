@@ -92,4 +92,4 @@
                 %h2.card-title.text-center= recent_item.title
                 %p.card-text.text-muted.text-center= recent_item.category.name
                 %p.card-text= truncate(recent_item.description, length: 60)
-                = link_to "See More", "#", class: "btn btn-primary btn-block"
+                = link_to "See More", recent_item, class: "btn btn-primary btn-block"

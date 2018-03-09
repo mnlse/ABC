@@ -24,6 +24,10 @@
         = f.label :"Main image"
         = f.file_field :main_image, class: "form-control"
       .form-group
+        = f.fields_for :pictures do |pf|
+          = pf.label :"Secondary images"
+          = pf.file_field :pictures, class: "form-control"
+      .form-group
         = f.label :promoted, class: "u-non-selectable"
         = f.check_box :promoted
       .form-group.hidden

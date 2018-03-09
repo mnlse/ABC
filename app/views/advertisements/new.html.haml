@@ -16,14 +16,15 @@
       .form-group
         = f.label :description
         = f.text_area :description, class: "form-control", rows: 10
+      #images
     .col
       .form-group
         = f.label :price, maxlength: 15
         = f.number_field :price, class: "form-control"
-      .form-group
+      .form-group.form-picture
         = f.label :"Main image"
-        = f.file_field :main_image, class: "form-control"
-      .form-group#secondary-images
+        = f.file_field :main_image, class: "form-control image-upload"
+      .form-group.form-picture
         = f.fields_for :pictures do |pic|
           = render 'picture_fields', f: pic
         .links
@@ -36,73 +37,3 @@
         = f.check_box :published
 
   = f.submit "Save", class: "btn btn-primary btn-lg mb-5", id: "save"
-
-:javascript
-  var jQElem = {
-    form: $("#new_advertisement"),
-    save: $("#save"),
-    publish: $("#publish"),
-    published: $("#advertisement_published"),
-    title: $("#advertisement_title"),
-    description: $("#advertisement_description"),
-    category: $("#advertisement_category"),
-    price: $("#advertisement_price"),
-    main_image: $("#advertisement_main_image"),
-    secondary_images: $("#secondary-images")
-  };
-
-  var validateFields = function() {
-    var successfulValidation = true
-    if( !jQElem.title.val() ) {
-      toastr['warning']("You have to provide a title");
-      jQElem.title.css("border", "1px solid red");
-      jQElem.title.prop("placeholder", "Provide a title");
-      successfulValidation = false
-    }
-    if( !jQElem.description.val() ) {
-      toastr['warning']("You have to provide a description");
-      jQElem.description.css("border", "1px solid red");
-      jQElem.description.prop("placeholder", "Provide a description");
-      successfulValidation = false
-    }
-
-    if( !jQElem.price.val() ) {
-      toastr['warning']("You have to provide a price");
-      jQElem.price.css("border", "1px solid red");
-      jQElem.price.prop("placeholder", "Provide a price");
-      successfulValidation = false
-    }
-
-    if( !jQElem.main_image.val() ) {
-      toastr['warning']("You have to provide main image");
-      jQElem.main_image.css("border", "1px solid red");
-      jQElem.main_image.prop("placeholder", "Provide a main_image");
-      successfulValidation = false
-    }
-
-    return successfulValidation;
-  };
-
-  var cooconEvents = function() {
-  };
-
-  var clickEvents = function() {
-    jQElem.save.click(function(e) {
-      e.preventDefault();
-      if(validateFields() === true) {
-        jQElem.form.trigger('submit');
-      };
-    });
-
-    jQElem.publish.click(function(e) {
-      e.preventDefault();
-      jQElem.published.prop("checked", true);
-      jQElem.save.click();
-    });
-  };
-
-  var init = function() {
-    clickEvents();
-  };
-
-  init();

@@ -22,6 +22,8 @@
         = f.number_field :price, class: "form-control"
       .form-group
         = f.label :"Main image"
+        %br
+        = image_tag @advertisement.main_image.url(:small), style: "width: 100px;"
         = f.file_field :main_image, class: "form-control"
       .form-group
         = f.label :promoted, class: "u-non-selectable"
@@ -30,7 +32,8 @@
         = f.label :published, class: "u-non-selectable"
         = f.check_box :published
 
-  = f.submit "Save", class: "btn btn-primary btn-lg mb-5", id: "save"
+  = f.submit "Update", class: "btn btn-primary btn-lg mb-5", id: "update"
+  = link_to "Preview", preview_advertisement_path(@advertisement), class: "btn btn-primary btn-lg mb-5", id: "preview"
 
 :javascript
   var jQElem = {
@@ -64,13 +67,6 @@
       toastr['warning']("You have to provide a price");
       jQElem.price.css("border", "1px solid red");
       jQElem.price.prop("placeholder", "Provide a price");
-      successfulValidation = false
-    }
-
-    if( !jQElem.main_image.val() ) {
-      toastr['warning']("You have to provide main image");
-      jQElem.main_image.css("border", "1px solid red");
-      jQElem.main_image.prop("placeholder", "Provide a main_image");
       successfulValidation = false
     }
 

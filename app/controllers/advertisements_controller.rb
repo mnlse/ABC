@@ -1,24 +1,46 @@
 class AdvertisementsController < ApplicationController
+  before_action :set_advertisement, only: [:edit, :update, :show, :preview]
   def new
     @search = false
     @advertisement = current_user.advertisements.new
+  end
 
-    @categories = Category.all.collect { |cat| [cat.name, cat.id] }
+  def edit
+  end
+
+  def show
+  end
+
+  def preview
+  end
+
+  def update
+    if @advertisement.update(permitted_params)
+      flash[:notice] = "Successfully updated"
+      render :edit, layout: 'application'
+    end
   end
 
   def create
     @advertisement = current_user.advertisements.new(permitted_params)
-    if @advertisement.save
-      flash[:notice] = "Successfully saved advertisement."
-      redirect_to root_path
+    if @advertisement.save && @advertisement.published
+      flash[:notice] = "Successfully published advertisement."
+      redirect_to @advertisement
+    elsif @advertisement.save
+      flash[:notice] = "Successfully saved draft"
+      redirect_to edit_advertisement_path(@advertisement)
     else
-      flash[:error] = "Failed to save advertisement"
-      render :new
+      flash[:alert] = "Failed to save advertisement..."
+      render :new, layout: 'application'
     end
   end
 
   private
   def permitted_params
-    params.require(:advertisement).permit(:category_id, :published, :title, :description, :main_image)
+    params.require(:advertisement).permit(:category_id, :price, :published, :title, :description, :main_image)
+  end
+
+  def set_advertisement
+    @advertisement = Advertisement.find(params[:id])
   end
 end

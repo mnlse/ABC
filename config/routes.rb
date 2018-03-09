@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#index'
-  resources :advertisements
+  resources :advertisements do
+    member do
+      get 'preview', to: 'preview'
+    end
+  end
 
   get 'categories/:category_name', to: "browse#by_category"
   get 'search', to: "browse#by_search"

@@ -27,9 +27,9 @@
         = f.file_field :main_image, class: "form-control"
       .form-group
         = f.label :"Secondary images"
+        %br
         - @advertisement.pictures.each do |picture|
-          %br
-          = image_tag picture.image.url(:small), style: "width: 100px"
+          = image_tag picture.image.url(:small), style: "width: 100px", class: "secondary-image"
       .form-group
         = f.label :promoted, class: "u-non-selectable"
         = f.check_box :promoted
@@ -50,7 +50,8 @@
     description: $("#advertisement_description"),
     category: $("#advertisement_category"),
     price: $("#advertisement_price"),
-    main_image: $("#advertisement_main_image")
+    main_image: $("#advertisement_main_image"),
+    secondary_image: $(".secondary-image")
   };
 
   var validateFields = function() {
@@ -78,6 +79,16 @@
     return successfulValidation;
   };
 
+  var hoverEvents = function() {
+    jQElem.secondary_image.hover(function() {
+      $(this).css("border", "1px solid red");
+
+    });
+    jQElem.secondary_image.mouseout(function() {
+      $(this).css("border", "0");
+    });
+  }
+
   var clickEvents = function() {
     jQElem.save.click(function(e) {
       e.preventDefault();
@@ -95,6 +106,7 @@
 
   var init = function() {
     clickEvents();
+    hoverEvents();
   };
 
   init();

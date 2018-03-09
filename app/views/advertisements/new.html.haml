@@ -23,10 +23,11 @@
       .form-group
         = f.label :"Main image"
         = f.file_field :main_image, class: "form-control"
-      .form-group
-        = f.fields_for :pictures do |pf|
-          = pf.label :"Secondary images"
-          = pf.file_field :image, class: "form-control"
+      .form-group#secondary-images
+        = f.fields_for :pictures do |pic|
+          = render 'picture_fields', f: pic
+        .links
+          = link_to_add_association 'Add Image', f, :pictures, class: "btn btn-primary"
       .form-group
         = f.label :promoted, class: "u-non-selectable"
         = f.check_box :promoted
@@ -46,7 +47,8 @@
     description: $("#advertisement_description"),
     category: $("#advertisement_category"),
     price: $("#advertisement_price"),
-    main_image: $("#advertisement_main_image")
+    main_image: $("#advertisement_main_image"),
+    secondary_images: $("#secondary-images")
   };
 
   var validateFields = function() {
@@ -79,6 +81,9 @@
     }
 
     return successfulValidation;
+  };
+
+  var cooconEvents = function() {
   };
 
   var clickEvents = function() {

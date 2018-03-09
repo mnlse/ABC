@@ -1,0 +1,9 @@
+.nested-fields
+  .form-group
+    = f.label :"Secondary Image"
+    .form-row
+      .col-sm-8
+        = f.file_field :image, class: "form-control"
+      .col-sm-4
+        = link_to_remove_association "Remove Image", f, class: "btn btn-block btn-secondary"
+

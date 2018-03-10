@@ -16,3 +16,7 @@
 //= require bootstrap
 //= require cocoon
 //= require_tree .
+
+toastr.options = {
+  'positionClass': 'toast-top-left'
+}

@@ -2,6 +2,10 @@ class DeviseRegistrationsController < Devise::RegistrationsController
   def edit
   end
 
+  def show_destroy
+    @user = current_user
+  end
+
   def destroy
     byebug
     if resource.destroy_with_password(params[:user][:current_password])

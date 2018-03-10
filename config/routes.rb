@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: "devise_sessions", registrations: "devise_registrations" }
+  devise_scope :user do
+    get 'users/edit/delete', to: "devise_registrations#show_destroy", as: "edit_user_registration_show_delete"
+  end
+
   root to: 'pages#index'
   resources :advertisements do
     member do

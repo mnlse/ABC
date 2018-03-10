@@ -31,9 +31,9 @@
           = link_to_add_association 'Add Image', f, :pictures, class: "btn btn-primary"
       .form-group
         = f.label :promoted, class: "u-non-selectable"
-        = f.check_box :promoted
+        = f.check_box :is_promoted
       .form-group.hidden
         = f.label :published, class: "u-non-selectable"
-        = f.check_box :published
+        = f.check_box :is_published
 
   = f.submit "Save", class: "btn btn-primary btn-lg mb-5", id: "save"

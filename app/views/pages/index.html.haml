@@ -15,7 +15,7 @@
                   = category.name
 
 %section.promoted
-  %h1.display-5.text-center.mt-4 Promoted near Walbrzych
+  %h1.display-5.text-center.mt-4 Promoted in #{current_user.city_last_known if current_user}
 
   - @promoted_ads.in_groups_of(4).each do |promoted_ads|
     .row.mt-4

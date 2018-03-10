@@ -4,6 +4,8 @@ class Advertisement < ApplicationRecord
   validates_attachment :main_image, presence: true,
                        content_type: { content_type: %w(image/jpeg image/png image/gif) },
                        size: { in: 0..5.megabytes }
+  validates :title, :city, :description, :price, presence: true
+  validates :description, length: { minimum: 30 }
 
   has_many :pictures, as: :pictureable
   accepts_nested_attributes_for :pictures, limit: 10, reject_if: proc { |pic| pic.try(:image) ? false : true }

@@ -11,7 +11,8 @@ $(document).on('turbolinks:load', function() {
     main_image: $('#advertisement_main_image'),
     secondary_images: $('#secondary-images'),
     picture_fields: $('.picture_field'),
-    picture_form_fields: $('.form-picture')
+    picture_form_fields: $('.form-picture'),
+    city: $('#advertisement_city')
   };
 
   var validateFields = function() {
@@ -22,10 +23,18 @@ $(document).on('turbolinks:load', function() {
       jQElem.title.prop("placeholder", "Provide a title");
       successfulValidation = false
     }
+
     if( !jQElem.description.val() ) {
       toastr['warning']("You have to provide a description");
       jQElem.description.css("border", "1px solid red");
       jQElem.description.prop("placeholder", "Provide a description");
+      successfulValidation = false
+    }
+
+    if( !jQElem.city.val() ) {
+      toastr['warning']("You have to provide a city");
+      jQElem.city.css("border", "1px solid red");
+      jQElem.city.prop("placeholder", "Provide a city");
       successfulValidation = false
     }
 
@@ -47,7 +56,7 @@ $(document).on('turbolinks:load', function() {
   };
 
   var cocoonEvents = function() {
-    var numOfFields = 0;
+    var numOfFields = $('.form-picture[data-id]').length;
     jQElem.picture_form_fields.on('cocoon:after-insert', function(e, insertedItem) {
       numOfFields++;
       $(insertedItem).attr("data-id", numOfFields);
@@ -80,7 +89,7 @@ $(document).on('turbolinks:load', function() {
 
   var imagePreviews = function() {
     jQElem.picture_form_fields.change(function(e) {
-      var target = $(e.target).closest('.nested-fields');
+      var target = $(e.target).closest('.form-group');
       var id = target.data("id");
       var $image = $('img[data-id="' + id + '"]');
       if ($image.length > 0) {

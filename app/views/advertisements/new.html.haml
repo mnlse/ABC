@@ -1,6 +1,11 @@
 .hero.d-flex.align-items-center.justify-content-center
   %h1.text-center.text-white.display-3 New Advertisement
 
+%h2.mt-5 Errors found
+- if @advertisement.errors.any?
+  = pluralize(@advertisement.errors.count, "error") + " found"
+  - @advertisement.errors.full_messages.each do |msg|
+    %p= msg
 = form_for @advertisement do |f|
   .form-row.mt-5
     .col-md-6
@@ -11,6 +16,15 @@
       .form-group
         = f.label :category
         = f.select :category_id, options_from_collection_for_select(Category.all, :id, :name), { }, class: "form-control"
+  .form-row
+    .col
+      .form-group
+        = f.label :city
+        = f.text_field :city, class: "form-control"
+    .col
+      .form-group
+        = f.label :voivodeship
+        = f.text_field :voivodeship, class: "form-control"
   %div.form-row
     .col
       .form-group
@@ -21,19 +35,18 @@
       .form-group
         = f.label :price, maxlength: 15
         = f.number_field :price, class: "form-control"
-      .form-group.form-picture
+      .form-group.form-picture{ 'data-id': 0 }
         = f.label :"Main image"
         = f.file_field :main_image, class: "form-control image-upload"
       .form-group.form-picture
         = f.fields_for :pictures do |pic|
           = render 'picture_fields', f: pic
         .links
-          = link_to_add_association 'Add Image', f, :pictures, class: "btn btn-primary"
+          = link_to_add_association 'Add More Images', f, :pictures, class: "btn btn-primary"
       .form-group
         = f.label :promoted, class: "u-non-selectable"
         = f.check_box :is_promoted
       .form-group.hidden
         = f.label :published, class: "u-non-selectable"
         = f.check_box :is_published
-
   = f.submit "Save", class: "btn btn-primary btn-lg mb-5", id: "save"

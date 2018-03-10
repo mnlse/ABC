@@ -19,17 +19,22 @@ class DeviseRegistrationsController < Devise::RegistrationsController
 
     if @user.valid_password?(params[:user][:current_password])
       if @user.update(resource_params)
-        redirect_to root_path
+        flash[:notice] = "Successfully updated profile..."
+        if(params[:user][:password])
+          flash[:info] = "Please log in"
+          redirect_to new_user_session_path
+        else
+          redirect_back(fallback_location: root_path)
+        end
+      else
+        flash[:alert] = "Incorrect password"
+        redirect_to edit_user_registration_path
       end
-    else
-      flash[:alert] = "Incorrect password"
-      redirect_to edit_user_registration_path
     end
 
   end
 
   def destroy
-    byebug
     if resource.destroy_with_password(params[:user][:current_password])
       flash[:notice] = "Your account has been deleted"
       redirect_to root_path
@@ -40,6 +45,6 @@ class DeviseRegistrationsController < Devise::RegistrationsController
   end
 
   def resource_params
-    params.require(:user).permit(:username)
+    params.require(:user).permit(:username, :password, :password_confirmation)
   end
 end

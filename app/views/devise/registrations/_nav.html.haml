@@ -1,5 +1,9 @@
 .list-group
   = link_to "Essentials", edit_user_registration_path,
     class: "list-group-item list-group-item-action #{'active' if current_page?(edit_user_registration_path) }"
-  = link_to "Delete Account", edit_user_registration_show_delete_path,
-    class: "list-group-item list-group-item-action #{'active' if current_page?(edit_user_registration_show_delete_path) }"
+  = link_to "Profile Appearance", edit_user_registration_appearance_path,
+    class: "list-group-item list-group-item-action #{'active' if current_page?(edit_user_registration_appearance_path)}"
+  = link_to "Password", edit_user_registration_password_path,
+    class: "list-group-item list-group-item-action #{'active' if current_page?(edit_user_registration_password_path)}"
+  = link_to "Delete Account", edit_user_registration_delete_path,
+    class: "list-group-item list-group-item-action #{'active' if current_page?(edit_user_registration_delete_path) }"

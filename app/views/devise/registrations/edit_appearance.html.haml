@@ -1,0 +1,13 @@
+.row.mt-5
+  .col-md-3
+    = render 'nav'
+  .col-md-6
+    = form_for @user do |f|
+      .form-group
+        = f.label :"Profile image"
+        = f.file_field :avatar, class: "form-control"
+
+      .form-group
+        = f.label :"Current password"
+        = f.password_field :current_password, class: "form-control"
+      = f.submit "Update", class: "btn btn-primary"

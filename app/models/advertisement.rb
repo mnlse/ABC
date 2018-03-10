@@ -6,11 +6,15 @@ class Advertisement < ApplicationRecord
                        size: { in: 0..5.megabytes }
 
   has_many :pictures, as: :pictureable
-  accepts_nested_attributes_for :pictures, limit: 10
+  accepts_nested_attributes_for :pictures, limit: 10, reject_if: proc { |pic| pic.try(:image) ? false : true }
 
   scope :recent, -> { where("created_at > ?", Time.now - 24.hours).order("created_at DESC") }
   scope :promoted, -> { where(is_promoted: true).order("created_at DESC") }
   scope :published, -> { where(is_published: true) }
+
+  def is_published?
+    self.is_published
+  end
 
   def self.search(phrase:)
     where("lower(title) LIKE lower(?)", "%#{phrase}%")

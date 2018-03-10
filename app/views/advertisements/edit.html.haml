@@ -32,10 +32,10 @@
           = image_tag picture.image.url(:small), style: "width: 100px", class: "secondary-image"
       .form-group
         = f.label :promoted, class: "u-non-selectable"
-        = f.check_box :promoted
+        = f.check_box :is_promoted
       .form-group.hidden
         = f.label :published, class: "u-non-selectable"
-        = f.check_box :published
+        = f.check_box :is_published
 
   = f.submit "Update", class: "btn btn-primary btn-lg mb-5", id: "update"
   = link_to "Preview", preview_advertisement_path(@advertisement), class: "btn btn-primary btn-lg mb-5", id: "preview"

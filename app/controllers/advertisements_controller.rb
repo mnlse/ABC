@@ -25,7 +25,7 @@ class AdvertisementsController < ApplicationController
 
   def create
     @advertisement = current_user.advertisements.new(permitted_params)
-    if @advertisement.save && @advertisement.published
+    if @advertisement.save && @advertisement.is_published?
       flash[:notice] = "Successfully published advertisement."
       redirect_to @advertisement
     elsif @advertisement.save

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users, only: [:show]
+
   get 'categories/:category_name', to: "browse#by_category"
   get 'search', to: "browse#by_search"
 

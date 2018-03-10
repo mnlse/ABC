@@ -4,15 +4,16 @@
     %span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
     %ul.navbar-nav.ml-auto.mr-5
-      %li.nav-item.dropdown
-        %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
-          My ABC
-        .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-          = link_to "My Profile", "#", class: "dropdown-item"
-          = link_to "My Adverts", "#", class: "dropdown-item"
-          .dropdown-divider
-          = link_to "Settings", "#", class: "dropdown-item"
       - if user_signed_in?
+        %li.nav-item.dropdown
+          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
+            My ABC
+          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+            = link_to "My Profile", user_path(current_user), class: "dropdown-item"
+            = link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item"
+            = link_to "My Adverts", "#", class: "dropdown-item"
+            .dropdown-divider
+            = link_to "Settings", "#", class: "dropdown-item"
         %li.nav-item
           = link_to "New Advert", new_advertisement_path, class: "nav-link"
         %li.nav-item

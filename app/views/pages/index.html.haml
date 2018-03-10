@@ -15,17 +15,17 @@
                   = category.name
 
 %section.promoted
-  %h1.display-5.text-center.mt-4 Promoted in #{current_user.city_last_known if current_user}
-
-  - @promoted_ads.in_groups_of(4).each do |promoted_ads|
+  %h1.display-5.text-center.mt-4 Promoted in #{current_user.city_last_known}
+  - @promoted_ads_in_city.in_groups_of(4).each do |promoted_ads|
     .row.mt-4
       - promoted_ads.each do |promoted_ad|
-        .col-md-3
-          .card
-            %img.card-img-top{ src: "http://www.placehold.it/300x300" }
-            .card-body
-              %h3.card-title Test
-              .card-text Test
+        - unless promoted_ad.nil?
+          .col-md-3
+            .card
+              = image_tag promoted_ad.main_image.url(:small), class: 'card-img-top'
+              .card-body
+                %h3.card-title Test
+                .card-text Test
 
 %section.latest
   %h1.display-5.text-center.mt-4 Recently added

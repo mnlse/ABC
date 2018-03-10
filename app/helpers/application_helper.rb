@@ -10,4 +10,9 @@ module ApplicationHelper
   def current_user
     super || GuestUser.new(email: "guest@guest.com", ip: request.remote_ip)
   end
+
+  def user_signed_in?
+    current_user.is_a?(User)
+  end
+
 end

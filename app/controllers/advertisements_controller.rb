@@ -39,7 +39,7 @@ class AdvertisementsController < ApplicationController
 
   private
   def permitted_params
-    params.require(:advertisement).permit(:category_id, :city, :voivodeship, :price, :published, :title, :description, :main_image, pictures_attributes: [:image])
+    params.require(:advertisement).permit(:category_id, :is_promoted, :is_published, :city, :voivodeship, :price, :title, :description, :main_image, pictures_attributes: [:image])
   end
 
   def set_advertisement

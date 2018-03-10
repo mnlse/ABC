@@ -60,3 +60,4 @@ gem 'haml-rails', '~> 0.9.0'
 gem 'jquery-rails', '~> 4.3'
 gem "paperclip", "~> 5.2.1"
 gem 'cocoon', '~> 1.2', '>= 1.2.11'
+gem 'geocoder', '~> 1.4', '>= 1.4.6'

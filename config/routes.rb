@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { sessions: "devise_sessions" }
   root to: 'pages#index'
   resources :advertisements do
     member do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180310134505) do
+ActiveRecord::Schema.define(version: 20180310142120) do
 
   create_table "advertisements", force: :cascade do |t|
     t.integer "user_id"
@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(version: 20180310134505) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "city_last_known"
+    t.string "country_last_known"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -7,4 +7,4 @@
       In order to delete your account, please provide your account password:
       = form_for @user, url: registration_path(@user), method: :delete do |f|
         = f.password_field :current_password, autocomplete: "off", class: "form-control", placeholder: "Current Password"
-        = f.submit "Delete account", class: "btn btn-danger mt-2"
+        = f.submit "Delete account", class: "btn btn-danger mt-2", data: { disable_with: "Updating..." }

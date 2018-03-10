@@ -2,7 +2,8 @@
   .col-md-3
     = render 'nav'
   .col-md-6
-    = form_for @user do |f|
+    = form_for @user, url: registration_path(@user) do |f|
+      = image_tag @user.avatar.url(:thumb)
       .form-group
         = f.label :"Profile image"
         = f.file_field :avatar, class: "form-control"

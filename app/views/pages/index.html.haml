@@ -16,76 +16,24 @@
 
 %section.promoted
   %h1.display-5.text-center.mt-4 Promoted near Walbrzych
-  .row.mt-4
-    .col-md-4
-      .card
-        %img.card-img-top{src: "https://loremflickr.com/320/240" }
-        .card-body
-          %h2.card-title.text-center Samochód Opel Astra
-          %p.card-text Dolor labore fugit perspiciatis nulla mollitia? Ea molestiae illo eum
-          = link_to "See More", "#", class: "btn btn-primary btn-block"
-    .col-md-4.flex-column.d-flex
-      .row
-        .col-md-6
-          .card.card-small
-            %img.card-img-top{src: "https://loremflickr.com/320/240" }
-            .card-body
-              %h5.card-title.text-center Samochód Opel Astra
-              = link_to "See More", "#", class: "btn btn-primary btn-block"
-        .col-md-6
-          .card.card-small
-            %img.card-img-top{src: "https://loremflickr.com/320/240" }
-            .card-body
-              %h5.card-title.text-center Samochód Opel Astra
-              = link_to "See More", "#", class: "btn btn-primary btn-block"
-      .row.mt-3
-        .col-md-6
+
+  - @promoted_ads.in_groups_of(4).each do |promoted_ads|
+    .row.mt-4
+      - promoted_ads.each do |promoted_ad|
+        .col-md-3
           .card
-            %img.card-img-top{src: "https://loremflickr.com/320/240" }
+            %img.card-img-top{ src: "http://www.placehold.it/300x300" }
             .card-body
-              %h5.card-title.text-center Samochód Opel Astra
-              = link_to "See More", "#", class: "btn btn-primary btn-block"
-        .col-md-6
-          .card
-            %img.card-img-top{src: "https://loremflickr.com/320/240" }
-            .card-body
-              %h5.card-title.text-center Samochód Opel Astra
-              = link_to "See More", "#", class: "btn btn-primary btn-block"
-    .col-md-4.flex-column.d-flex
-      .row
-        .col-md-6
-          .card.card-small
-            %img.card-img-top{src: "https://loremflickr.com/320/240" }
-            .card-body
-              %h5.card-title.text-center Samochód Opel Astra
-              = link_to "See More", "#", class: "btn btn-primary btn-block"
-        .col-md-6
-          .card.card-small
-            %img.card-img-top{src: "https://loremflickr.com/320/240" }
-            .card-body
-              %h5.card-title.text-center Samochód Opel Astra
-              = link_to "See More", "#", class: "btn btn-primary btn-block"
-      .row.mt-3
-        .col-md-6
-          .card
-            %img.card-img-top{src: "https://loremflickr.com/320/240" }
-            .card-body
-              %h5.card-title.text-center Samochód Opel Astra
-              = link_to "See More", "#", class: "btn btn-primary btn-block"
-        .col-md-6
-          .card
-            %img.card-img-top{src: "https://loremflickr.com/320/240" }
-            .card-body
-              %h5.card-title.text-center Samochód Opel Astra
-              = link_to "See More", "#", class: "btn btn-primary btn-block"
+              %h3.card-title Test
+              .card-text Test
 
 %section.latest
   %h1.display-5.text-center.mt-4 Recently added
-  - @recent_ad.in_groups_of(6) do |recent_six|
+  - @recent_ads.in_groups_of(6) do |recent_six|
     .row.mt-4
       - recent_six.each do |recent_item|
         - unless recent_item.nil?
-          .col-md-2
+          .col-md-3
             .card
               = image_tag recent_item.main_image.url, class: "card-img-top"
               .card-body

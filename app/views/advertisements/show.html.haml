@@ -1,10 +1,13 @@
 %div.advert-show
-  %h1.text-center= @advertisement.title
-  %small.text-muted.text-center= @advertisement.category
-  %p.description= @advertisement.description
-  %p.price= @advertisement.price
+  %h1.text-center
+    = @advertisement.title
+    %br
+    %small.text-center= number_to_currency(@advertisement.price, unit: "PLN")
+  %h5.text-muted.text-center= "Category: #{@advertisement.category}"
+  %p.description.mt-4= @advertisement.description
 
-  #carouselIndicators.carousel.slide{"data-ride" => "carousel"}
+  %h1.display-4.text-center.mt-5 Gallery
+  #carouselIndicators.carousel.slide.mt-5{"data-ride" => "carousel"}
     .carousel-inner
       .carousel-item.active
         = image_tag @advertisement.main_image.url(:medium), class: "d-block w-100"

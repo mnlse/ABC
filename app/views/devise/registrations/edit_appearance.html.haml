@@ -3,12 +3,21 @@
     = render 'nav'
   .col-md-6
     = form_for @user, url: registration_path(@user) do |f|
-      = image_tag @user.avatar.url(:thumb)
       .form-group
         = f.label :"Profile image"
+        %br
+        = image_tag @user.avatar.url(:thumb), class: "my-3"
         = f.file_field :avatar, class: "form-control"
 
       .form-group
         = f.label :"Current password"
         = f.password_field :current_password, class: "form-control"
-      = f.submit "Update", class: "btn btn-primary"
+      .form-group
+        = f.label "Profile color"
+        = f.radio_button :color, "red"
+        = f.radio_button :color, "blue"
+        %div.color-boxes.mb-3.clearfix
+          - User.profile_show_colors.each do |k,v|
+            .color-boxes__box.float-left{ style: "background-color: #{v};" }
+
+      = f.submit "Update", class: "btn btn-primary", id: "appearance-btn-submit"

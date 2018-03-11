@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def current_user
-    super || GuestUser.new(email: "guest@guest.com", ip: request.remote_ip)
+    super # || GuestUser.new(email: "guest@guest.com", ip: request.remote_ip)
   end
 
   def user_signed_in?

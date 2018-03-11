@@ -15,7 +15,7 @@
                   = category.name
 
 %section.promoted
-  %h1.display-5.text-center.mt-4 Promoted in #{current_user.city_last_known}
+  %h1.display-5.text-center.mt-4 Promoted in #{@city_name}
   - @promoted_ads_in_city.in_groups_of(4).each do |promoted_ads|
     .row.mt-4
       - promoted_ads.each do |promoted_ad|

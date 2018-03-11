@@ -2,4 +2,13 @@
   .col-md-3
     = render '/devise/registrations/nav'
   .col-md-6
-
+    - if @user_profile.avatar_image
+      = image_tag @user_profile.avatar_image.url(:medium)
+    - if @user_profile.background_image
+      = image_tag @user_profile.background_image.url(:medium)
+    = form_for @user_profile do |f|
+      = f.label :'Avatar image', class: 'mt-3'
+      = f.file_field :avatar_image, class: 'form-control'
+      = f.label :'Background image', class: 'mt-3'
+      = f.file_field :background_image, class: 'form-control'
+      = f.submit "Update", class: 'btn btn-primary mt-3', data: { disable_with: "Updating..." }

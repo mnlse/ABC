@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:show]
+  resources :user_profiles, only: [:show, :update]
 
   get 'categories/:category_name', to: "browse#by_category"
   get 'search', to: "browse#by_search"

@@ -6,10 +6,6 @@ class DeviseRegistrationsController < Devise::RegistrationsController
     @user = current_user
   end
 
-  def edit_appearance
-    @user = current_user
-  end
-
   def edit_password
     @user = current_user
   end
@@ -45,6 +41,7 @@ class DeviseRegistrationsController < Devise::RegistrationsController
     end
   end
 
+  private
   def resource_params
     params.require(:user).permit(:username, :password, :password_confirmation, :avatar)
   end

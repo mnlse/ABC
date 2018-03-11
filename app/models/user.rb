@@ -8,4 +8,12 @@ class User < ApplicationRecord
 
   has_many :advertisements, dependent: :destroy
   has_one :user_profile, dependent: :destroy
+
+  after_create :create_user_profile
+
+  def create_user_profile
+    user_profile = UserProfile.new
+    user_profile.user_id = self.id
+    user_profile.save
+  end
 end

@@ -3,9 +3,6 @@
   font-size: 7vh;
   background: darken(#fff, 2%);
   color: #000;
-  @media (screen and max-width: 540px) {
-    margin-top: 1rem;
-  }
 
   &:hover {
     outline: 1px solid black;

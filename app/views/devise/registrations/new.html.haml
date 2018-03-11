@@ -19,5 +19,97 @@
         %br/
         = f.password_field :password_confirmation, autocomplete: "off", class: "form-control"
       .actions
-        = f.submit "Sign up", class: 'btn btn-primary', data: { disable_with: "Signing up..." }
+        = f.submit "Sign up", id: "sign-up", class: 'btn btn-primary', data: { disable_with: "Signing up..." }
     = render "devise/shared/links"
+
+:javascript
+  jQElem = {
+    form: $('#new_user'),
+    emailField: $('#user_email'),
+    userPassword: $('#user_password'),
+    userPasswordConfirmation: $('#user_password_confirmation'),
+    signUpLink: $('#sign-up')
+  }
+
+  var displayNotification = function(type, message) {
+    toastr[type](message);
+  }
+
+  var validateForm = function() {
+    var isFormValid = false;
+
+    var areEmptyFields = (function() {
+      var emptyFields = false;
+
+      var emailField = jQElem.emailField.val();
+      var passwordField = jQElem.userPassword.val();
+      var passwordConfirmationField = jQElem.userPasswordConfirmation.val();
+
+      if ( emailField === '' ) {
+        displayNotification('warning', 'Please provide email');
+        jQElem.emailField.css('border', '1px solid red');
+        emptyFields = true;
+      }
+
+      if ( passwordField === '' || passwordConfirmationField === '' ) {
+        emptyFields = true;
+
+        displayNotification('warning', 'Please provide password');
+        if ( jQElem.userPassword.val() === '' ) {
+          jQElem.userPassword.css('border', '1px solid red');
+        }
+        if ( jQElem.userPasswordConfirmation.val() === '' ) {
+          jQElem.userPasswordConfirmation.css('border', '1px solid red');
+        }
+      }
+      return emptyFields;
+    })();
+
+    var arePasswordsMatching = (function() {
+      var passwordField = jQElem.userPassword;
+      var passwordConfirmationField = jQElem.userPasswordConfirmation;
+      var match = ( passwordField.val() === passwordConfirmationField.val() );
+
+      if(!areEmptyFields && !match) {
+        displayNotification('warning', 'Passwords do not match');
+        passwordField.css("border", "1px solid red")
+        passwordConfirmationField.css("border", "1px solid red")
+      }
+      return match;
+    })();
+
+    var arePasswordsAboveMinimumLength = (function() {
+      var minimum = #{@minimum_password_length}
+      var passwordField = jQElem.userPassword;
+      var passwordConfirmationField = jQElem.userPasswordConfirmation;
+
+      if( passwordField.val().length < minimum || passwordConfirmationField.val().length < minimum ) {
+        passwordField.css('border', '1px solid red');
+        passwordConfirmationField.css('border', '1px solid red');
+        displayNotification('warning', 'Password must be above ' + minimum + ' characters');
+      }
+    })();
+
+    if(!areEmptyFields && arePasswordsMatching) {
+      isFormValid = true;
+    } else {
+      isFormValid = false;
+    }
+
+    return isFormValid;
+  }
+
+  var clickEvents = function() {
+    jQElem.signUpLink.click(function(e) {
+      e.preventDefault();
+      if(validateForm() === true) {
+        jQElem.form.trigger("submit");
+      }
+    });
+  }
+
+  var init = function() {
+    clickEvents();
+  }
+
+  init();

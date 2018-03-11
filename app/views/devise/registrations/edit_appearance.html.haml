@@ -12,12 +12,5 @@
       .form-group
         = f.label :"Current password"
         = f.password_field :current_password, class: "form-control"
-      .form-group
-        = f.label "Profile color"
-        = f.radio_button :color, "red"
-        = f.radio_button :color, "blue"
-        %div.color-boxes.mb-3.clearfix
-          - User.profile_show_colors.each do |k,v|
-            .color-boxes__box.float-left{ style: "background-color: #{v};" }
 
       = f.submit "Update", class: "btn btn-primary", id: "appearance-btn-submit"

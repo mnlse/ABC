@@ -7,4 +7,5 @@ class User < ApplicationRecord
   validates_attachment :avatar, content_type: { content_type: %w(image/jpeg image/png image/jpg) }
 
   has_many :advertisements, dependent: :destroy
+  has_one :user_profile, dependent: :destroy
 end

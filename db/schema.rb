@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180311123207) do
+ActiveRecord::Schema.define(version: 20180311130147) do
 
   create_table "advertisements", force: :cascade do |t|
     t.integer "user_id"
@@ -47,6 +47,21 @@ ActiveRecord::Schema.define(version: 20180311123207) do
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.index ["pictureable_type", "pictureable_id"], name: "index_pictures_on_pictureable_type_and_pictureable_id"
+  end
+
+  create_table "user_profiles", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "background_image_file_name"
+    t.string "background_image_content_type"
+    t.integer "background_image_file_size"
+    t.datetime "background_image_updated_at"
+    t.string "avatar_image_file_name"
+    t.string "avatar_image_content_type"
+    t.integer "avatar_image_file_size"
+    t.datetime "avatar_image_updated_at"
+    t.string "description"
+    t.string "profile_color"
+    t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

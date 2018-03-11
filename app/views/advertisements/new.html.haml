@@ -49,4 +49,4 @@
       .form-group.hidden
         = f.label :published, class: "u-non-selectable"
         = f.check_box :is_published
-  = f.submit "Save", class: "btn btn-primary btn-lg mb-5", id: "save"
+  = f.submit "Save", class: "btn btn-primary btn-lg mb-5", id: "save", data: { disable_with: "Saving..." }

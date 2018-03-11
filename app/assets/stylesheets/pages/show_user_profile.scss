@@ -2,16 +2,11 @@
   // background-image is set in HTML
   background-size: cover;
   text-align: center;
-}
-.user-avatar {
-  border-radius: 50%;
-  width: calc(8vh + 8vw);
-  height: calc(8vh + 8vw);
-}
-.user-info {
-  background: red;
-  float: left;
-  width: 30%;
+  &__avatar {
+    border-radius: 50%;
+    width: calc(8vh + 8vw);
+    height: calc(8vh + 8vw);
+  }
 }
 
 .pink {

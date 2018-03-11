@@ -1,18 +1,27 @@
 .user-hero
   .row.p-5
     .col-md-3.px-0
-      .user-avatar
+      .user-hero__avatar
     .col-md-6.px-0
+      .user-hero__info
       %h1.text-white.display-4= @user.username
       %h3.text-white= @user.email
-.row
+.row.mt-5
   .col-md-3
+    .user-description.mt-5
     = @user_profile.description
+    Sit adipisicing iste illo nam sint. Sapiente ducimus illo neque veritatis rem, maxime eligendi laborum? Vero natus ipsa ipsam ipsum dolorem Iure ea sapiente nesciunt assumenda harum. Ducimus maxime earum illo impedit consectetur! Ea nihil in sint alias adipisci, consequatur
+
+  .col-md-6
+    %h1.text-center.display-4.text-muted Adverts
+    - @advertisements.each do |advert|
+      = advert
+
 
 :css
   .user-hero {
     background-image: linear-gradient(0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('#{@user_profile.background_image.url}');
   }
-  .user-avatar {
+  .user-hero__avatar {
     background-image: url('#{@user_profile.avatar_image.url}');
   }

@@ -2,10 +2,17 @@
   .col-md-3
     = render '/devise/registrations/nav'
   .col-md-6
-    - if @user_profile.avatar_image
-      = image_tag @user_profile.avatar_image.url(:medium)
-    - if @user_profile.background_image
-      = image_tag @user_profile.background_image.url(:medium)
+    %div.row
+      %div.col-md-6
+        %p Avatar image
+        - if @user_profile.avatar_image
+          = image_tag @user_profile.avatar_image.url(:medium), class: "w-100 float-left"
+      %div.col-md-6
+        %p Background image
+        - if @user_profile.background_image
+          = image_tag @user_profile.background_image.url(:medium), class: "w-100 float-left"
+
+
     = form_for @user_profile do |f|
       = f.label :'Avatar image', class: 'mt-3'
       = f.file_field :avatar_image, class: 'form-control'

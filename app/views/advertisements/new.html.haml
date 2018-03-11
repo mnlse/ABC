@@ -1,8 +1,8 @@
 .hero.d-flex.align-items-center.justify-content-center
   %h1.text-center.text-white.display-3 New Advertisement
 
-%h2.mt-5 Errors found
 - if @advertisement.errors.any?
+  %h2.mt-5 Errors found
   = pluralize(@advertisement.errors.count, "error") + " found"
   - @advertisement.errors.full_messages.each do |msg|
     %p= msg

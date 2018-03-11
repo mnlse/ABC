@@ -8,7 +8,9 @@ class Advertisement < ApplicationRecord
   validates :description, length: { minimum: 30 }
 
   has_many :pictures, as: :pictureable
-  accepts_nested_attributes_for :pictures, limit: 10, reject_if: proc { |pic| pic.try(:image) ? false : true }
+
+  # Accepts pictures, reject if image attachment is empty
+  accepts_nested_attributes_for :pictures, limit: 10, reject_if: proc { |attributes| attributes['image'].blank? }
 
   scope :recent, -> { where("created_at > ?", Time.now - 24.hours).order("created_at DESC") }
   scope :promoted, -> { where(is_promoted: true) }

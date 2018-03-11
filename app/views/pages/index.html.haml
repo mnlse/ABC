@@ -6,11 +6,11 @@
     .row.mt-4
       - categories_four.each do |category|
         - unless category.nil?
-          .col-md-3
+          .col-md-3.col-sm-12
             = link_to "categories/#{category.name.gsub(" ", "_")}", class: "category-item__link" do
-              .category-item
+              .category-item.mt-sm-2.mt-md-0
                 .category-item__icon
-                  %i{class: category.icon}
+                  %i.m-1{class: category.icon}
                 .category-item__text
                   = category.name
 
@@ -20,7 +20,7 @@
     .row.mt-4
       - promoted_ads.each do |promoted_ad|
         - unless promoted_ad.nil?
-          .col-md-3
+          .col-md-3.col-sm-6
             .card
               = image_tag promoted_ad.main_image.url(:small), class: 'card-img-top'
               .card-body
@@ -34,7 +34,7 @@
     .row.mt-4
       - recent_six.each do |recent_item|
         - unless recent_item.nil?
-          .col-md-3
+          .col-md-3.col-sm-6
             .card
               = image_tag recent_item.main_image.url, class: "card-img-top"
               .card-body

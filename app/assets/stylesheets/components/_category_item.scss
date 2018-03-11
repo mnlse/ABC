@@ -3,6 +3,9 @@
   font-size: 7vh;
   background: darken(#fff, 2%);
   color: #000;
+  @media (screen and max-width: 540px) {
+    margin-top: 1rem;
+  }
 
   &:hover {
     outline: 1px solid black;
@@ -15,13 +18,13 @@
   }
 
   &__icon {
-    display: inline-block;
+    text-align: center;
     font-size: 1em;
     border-radius: 50%;
   }
 
   &__text {
-    display: inline-block;
+    text-align: center;
     vertical-align: middle;
     font-size: 0.5em;
   }
